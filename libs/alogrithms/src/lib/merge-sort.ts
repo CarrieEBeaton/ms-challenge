@@ -1,62 +1,49 @@
-import { Pipe } from "@angular/core";
+import { Injectable, Pipe } from "@angular/core";
 
 @Pipe({ name: 'MergeSort'})
+@Injectable({
+  providedIn: 'root',
+})
 export class MergeSort {
-  mergesort(array: number[]): void {
-    // new temp array makes storage more efficient vs creating new object on heap each time
-    this.merge(array, [array.length], 0, array.length - 1);
-  }
+  // left array and right array are sorted
+  merge = (leftArray: number[], rightArray: number[])  => {
+    const output = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
 
-  merge(array: number[], temp: number[], leftStart: number, rightEnd: number) {
-    if(leftStart >= rightEnd) {
-      return;
-    }
-    let middle: number = (leftStart + rightEnd) / 2;
-    this.merge(array, temp, leftStart, middle);
-    this.merge(array, temp, middle + 1, rightEnd);
-    this.mergeHalves(array, temp, leftStart, rightEnd);
-  }
+    while (leftIndex < leftArray.length && rightIndex < rightArray.length) {
+      const leftElement = leftArray[leftIndex];
+      const rightElement = rightArray[rightIndex];
 
-  mergeHalves(array: number[], temp: number[], leftStart: number, rightEnd: number) {
-    let leftEnd: number = (rightEnd + leftStart) / 2;  // essentially the same thing as middle
-    let rightStart = leftEnd + 1;
-    // let size = rightEnd - leftStart + 1;
-
-    // base case array of only one item
-
-    let left = leftStart;  // left index
-    let right = rightStart; // right index
-    let index = leftStart; // temporary index
-
-    // walk through each half of the array while elements are still in bounds
-    // copy over smaller element, once element goes out of bounds - copy over remainer of elements
-    while (left <= leftEnd && right <= rightEnd) {
-      if(array[left] <= array[right]) {
-        temp[index] = array[left]; // copy into if left is less than right
-        left++;
+      if(leftElement < rightElement) {
+        output.push(leftElement);
+        leftIndex++;
       } else {
-        temp[index] = array[right]; // else copy over right element
-        right++;
+        output.push(rightElement);
+        rightIndex++;
       }
-      index++;
     }
 
-    let newArray = [];
-    console.log(temp);
+    // in some cases not all of the left or right elements got put into the array so copy them into the index
+    // if we already used all it just gives nothing
+    return [...output, ...leftArray.slice(leftIndex), ...rightArray.slice(rightIndex)]
+  }
 
-    // for(let i = 0; i < leftEnd; i++) {
-    //   console.log(temp[i]);
-    //   newArray.push(temp[i]);
-    // }
+  mergeSort = (array: number[]) => {
+    if(array.length <= 1) {
+      // edge case - if the array is empty or equals 1 then return the array
+      return array;
+    }
+    // Get the middle of the array
+    let middle: number = Math.floor(array.length) / 2;
+    const leftArray = array.slice(0, middle);   // get the left-hand side of the array
+    const rightArray = array.slice(middle); // get the right-hand side of the array
 
-    // for(let i = leftStart; i < rightStart; i++) {
-    //   newArray.push(temp[i]);
-    // }
-
-    // for(let i = 0; i < newArray.length; i++) {
-    //   console.log(newArray[i]);
-    // }
-
-    return newArray;
+    // call the merge halves function weher it takes the left hand side, sorts it
+    // and the right hand hand side and sorts it and returns the array
+    return this.merge(
+      this.mergeSort(leftArray),
+      this.mergeSort(rightArray)
+    )
   }
 }
