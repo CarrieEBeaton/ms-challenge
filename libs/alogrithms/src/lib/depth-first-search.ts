@@ -1,5 +1,7 @@
 import { Injectable, Pipe } from '@angular/core';
-import { StringBuilder } from 'typescript-string-operations';
+// Min height trees
+// generate parentheses but make sure to check for invalid paths
+// permutations, combination sum, subsets
 
 @Pipe({ name: 'DepthFirstSearch' })
 @Injectable({
@@ -11,7 +13,6 @@ export class DepthFirstSearch {
     // Create something to hold the solution
     let result = new Array<String>();
     
-    console.log(digits);
     // needs to know how to loop up relavent information
     if (digits != null && digits.length > 0) {
       const map: string[] = ['', '', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz'];
@@ -22,9 +23,8 @@ export class DepthFirstSearch {
 
   depthFirstSearch(searchTerm: string, map: string[], result: Array<String>, sb: string, index: number) {
 
-    // know when to stop searching - for example if the index = the end of the arrray we are done
+    // know when to stop searching - for example if the index = the end of the array we are done
     // may need to check for dups or wrong answers
-    console.log(searchTerm.length);
     if (index === searchTerm.length) {
       result.push(sb);
       return;

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BinarySearch } from 'libs/alogrithms/src/lib/binary-search';
 import { BubbleSort } from 'libs/alogrithms/src/lib/bubble-sort';
 import { DepthFirstSearch } from 'libs/alogrithms/src/lib/depth-first-search';
+import { DepthFirstSearchMatrix } from 'libs/alogrithms/src/lib/dfs-matrix';
 import { MergeSort } from 'libs/alogrithms/src/lib/merge-sort';
 import { QuickSort } from 'libs/alogrithms/src/lib/quick-sort';
 
@@ -13,6 +14,7 @@ import { QuickSort } from 'libs/alogrithms/src/lib/quick-sort';
 export class AppComponent {
 
   constructor(
+    private dpsMatrix: DepthFirstSearchMatrix,
     private depthFirstSearch: DepthFirstSearch,
     private binarySearch: BinarySearch,
     private bubbleSort: BubbleSort,
@@ -23,8 +25,26 @@ export class AppComponent {
     // const index = binarySearch.binarySearch(array, 5);
 
     // console.log(array[index]);
-    const result = depthFirstSearch.letterCombinations('23');
+
+    this.dfsMatrxiTesting();
+  }
+
+  dfsTest() {
+    const result = this.depthFirstSearch.letterCombinations('23');
     console.log(result);
+  }
+
+  dfsMatrxiTesting() {
+    const grid = [
+      ["1","1","1","1","0"],
+      ["1","1","0","1","0"],
+      ["1","1","0","0","0"],
+      ["0","0","0","0","0"]
+    ]
+    const numberOfIslands = this.dpsMatrix.numberOfIslands(grid);
+
+    // returns the index of array when found or -1 if not found
+    console.log(numberOfIslands);
   }
 
   binarySearchTesting() {
