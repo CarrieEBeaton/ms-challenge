@@ -253,6 +253,31 @@
           }
         }
       }
+    },
+    "examples": {
+      "projectType": "library",
+      "root": "libs/examples",
+      "sourceRoot": "libs/examples/src",
+      "prefix": "ms-challenge",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/examples/src/**/*.ts",
+              "libs/examples/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/examples"],
+          "options": {
+            "jestConfig": "libs/examples/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/apps/api',
     '<rootDir>/libs/data-structures',
     '<rootDir>/libs/alogrithms',
+    '<rootDir>/libs/examples',
   ],
 };

@@ -17,6 +17,7 @@
     "api": { "tags": [] },
     "api-interfaces": { "tags": [] },
     "data-structures": { "tags": [] },
-    "alogrithms": { "tags": [] }
+    "alogrithms": { "tags": [] },
+    "examples": { "tags": [] }
   }
 }

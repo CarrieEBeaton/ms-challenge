@@ -17,7 +17,8 @@
     "paths": {
       "@ms-challenge/api-interfaces": ["libs/api-interfaces/src/index.ts"],
       "@ms-challenge/data-structures": ["libs/data-structures/src/index.ts"],
-      "@ms-challenge/alogrithms": ["libs/alogrithms/src/index.ts"]
+      "@ms-challenge/alogrithms": ["libs/alogrithms/src/index.ts"],
+      "@ms-challenge/examples": ["libs/examples/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],
