@@ -6,9 +6,10 @@ import { BubbleSort } from './bubble-sort';
 import { BinarySearch } from './binary-search';
 import { DepthFirstSearch } from './depth-first-search';
 import { DepthFirstSearchMatrix } from './dfs-matrix';
+import { DataStructuresModule } from '@ms-challenge/data-structures';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, DataStructuresModule],
   declarations: [
     MergeSort,
     QuickSort,

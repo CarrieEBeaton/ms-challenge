@@ -1,7 +1,17 @@
 import { Injectable, Pipe } from '@angular/core';
+import { LinkedList } from 'libs/data-structures/src/lib/linked-list';
+// import { LinkedList } from '@ms-challenge/data-structures';
 // Min height trees
 // generate parentheses but make sure to check for invalid paths
 // permutations, combination sum, subsets
+export class Node {
+  id: number
+  adj: Node | null
+  constructor(id?: number, next?: Node | null) {
+    this.id = id;
+    this.adj = (this.adj === undefined ? null : this.adj)
+  }
+}
 
 @Pipe({ name: 'DepthFirstSearch' })
 @Injectable({
@@ -9,35 +19,28 @@ import { Injectable, Pipe } from '@angular/core';
 })
 export class DepthFirstSearch {
 
-  letterCombinations(digits: string) {
-    // Create something to hold the solution
-    let result = new Array<String>();
-    
-    // needs to know how to loop up relavent information
-    if (digits != null && digits.length > 0) {
-      const map: string[] = ['', '', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz'];
-      this.depthFirstSearch(digits, map, result = new Array<String>(), '', 0);
-    }
-    return result;
+  hasPathDFS(source: number, destination: number) {
+    const visted = new Set<number>();
+    const s: Node = new Node(source);
+    const d: Node = new Node(destination);
+    return this.depthFirstSearch(s, d, visted);
   }
 
-  depthFirstSearch(searchTerm: string, map: string[], result: Array<String>, sb: string, index: number) {
+  depthFirstSearch(source: Node, destination: Node, visited: Set<number>) {
+    if(visited.has(source.id)) {
+      return false;
+    }
+    visited.add(source.id);
 
-    // know when to stop searching - for example if the index = the end of the array we are done
-    // may need to check for dups or wrong answers
-    if (index === searchTerm.length) {
-      result.push(sb);
-      return;
+    if (source === destination) {
+      return true;
     }
 
-    // get the current digent
-    const digit: string = searchTerm.charAt(index);
-    const letters = map[digit];
-    for (let i = 0; i < letters.length; i++) {
-      const ch = letters.charAt(i);
-      sb = sb.concat(ch);
-      this.depthFirstSearch(searchTerm, map, result, sb, index + 1);
-      sb = sb.slice(0, -1);
+    while(source.adj !== null) {
+      if(this.depthFirstSearch(source.adj, destination, visited)) {
+        return true;
+      }
     }
+    return false;
   }
 }

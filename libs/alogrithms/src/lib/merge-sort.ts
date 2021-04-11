@@ -47,3 +47,18 @@ export class MergeSort {
     )
   }
 }
+
+//don't forget base case if the arr.lenght less 1 return
+// get middle math.floor (arra.length - 1) /2
+// left arr.slice(0,middle)
+// right arr.slice(middel)
+
+
+// mergesort
+// take in a left array and a right array
+// create an output
+// create an index for the left and right = 0
+// if the arra leftindes < array right index 
+// out push(left element)
+
+// otherwise push the right element
