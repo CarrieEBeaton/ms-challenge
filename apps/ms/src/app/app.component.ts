@@ -29,10 +29,6 @@ export class AppComponent {
     this.dfsMatrxiTesting();
   }
 
-  dfsTest() {
-    const result = this.depthFirstSearch.letterCombinations('23');
-    console.log(result);
-  }
 
   dfsMatrxiTesting() {
     const grid = [

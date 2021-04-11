@@ -26,7 +26,7 @@ export class BreadthFirstSearch {
   // populate the adjacency list with all the nodes' neighbors
 
   // create a visted array where false = unvisitied and true = visited
-
+  // best for sortest path and often the the most efficent way b/c it will not go deep into a node
   hasPathBFS(source: Node, destination: Node) {
     let queue = [];
     const visited = new Set<number>();
