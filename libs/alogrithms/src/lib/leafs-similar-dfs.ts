@@ -17,8 +17,6 @@ function leafSimilar(root1: TreeNode | null, root2: TreeNode | null): boolean {
   let list2: number[] = [];
   getLeaves(root1, list);
   getLeaves(root2, list2)
-  console.log(list);
-  console.log(list2);
   const same = JSON.stringify(list) === JSON.stringify(list2);
   return same;
 };
