@@ -24,8 +24,8 @@ function depthFirstSearch(searchTerm: string, map: string[], result: Array<Strin
   const letters = map[digit];
   for (let i = 0; i < letters.length; i++) {
     const ch = letters.charAt(i);
-    sb = sb.concat(ch);
-    depthFirstSearch(searchTerm, map, result, sb, index + 1);
-    sb = sb.slice(0, -1);
+    sb = sb.concat(ch); // make a change
+    depthFirstSearch(searchTerm, map, result, sb, index + 1); // recursise down that path take this string and move to the next digit
+    sb = sb.slice(0, -1);  // undo change so you can check other paths (SAME AS BACKTRACKING) sure we try all other options properly
   }
 }

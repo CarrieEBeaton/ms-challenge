@@ -23,19 +23,24 @@ export class DepthFirstSearch {
     const visted = new Set<number>();
     const s: Node = new Node(source);
     const d: Node = new Node(destination);
+    // write a recursive method for dfs
     return this.depthFirstSearch(s, d, visted);
   }
 
   depthFirstSearch(source: Node, destination: Node, visited: Set<number>) {
+    // it will check if it has visted the node befor and if yes return false
     if(visited.has(source.id)) {
       return false;
     }
+    // if not add the id to the visited hash set
     visited.add(source.id);
 
+    // if the source equals the destination, return true
     if (source === destination) {
       return true;
     }
-
+    
+    // while the source next ! null return true, else
     while(source.adj !== null) {
       if(this.depthFirstSearch(source.adj, destination, visited)) {
         return true;
